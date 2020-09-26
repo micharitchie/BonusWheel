@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-//using System.IO;
+using System.IO;
 using UnityEngine.UI;
 
 
@@ -26,14 +26,15 @@ public class Spinner : MonoBehaviour
     private RewardOdds[] rewardOdds;
     private GameObject starInstance;
     private GameObject prize;
+    private int[] prizeStorer;
     private int totalOdds;
     private int randomNumber;
     private int rotationAmount;
     private int maxPlays;
     private float rotMultiplier;
-    private string winningAward;
-    //private string writerPath = "Assets/TextFile/SpinResults.txt";
-    //private StreamWriter writer;
+    //private string winningAward;
+    private string writerPath = "Assets/TextFile/SpinResults.txt";
+    private StreamWriter writer;
     private Text buttonText;
     private Vector3 startingPos;
     private bool claiming = false;
@@ -43,6 +44,7 @@ public class Spinner : MonoBehaviour
         Application.targetFrameRate = 60;
         prizes = new GameObject[wheel.transform.childCount];
         rewardOdds = new RewardOdds[prizes.Length];
+        prizeStorer = new int[prizes.Length];
         // Stores prizes in array based on their order in Hierarchy
         // Requires prizes to be placed in order that matches their placement on wheel
         for (int i = 0; i < prizes.Length; i++)
@@ -91,12 +93,14 @@ public class Spinner : MonoBehaviour
             // if this is the first item in array and our random number is in it's range
             if (i == 0 && randomNumber <= rewardOdds[i].winRate)
             {
-                winningAward = prizes[i].name;
+                //winningAward = prizes[i].name;
+                prizeStorer[i]++;
                 prize = prizes[i];
                 rotationAmount = Mathf.RoundToInt(((i * rotMultiplier) + (j * rotMultiplier)) / 2);
             } else if (randomNumber <= rewardOdds[i].winRate && randomNumber > rewardOdds[h].winRate)
             {
-                winningAward = prizes[i].name;
+                //winningAward = prizes[i].name;
+                prizeStorer[i]++;
                 prize = prizes[i];
                 if (i < prizes.Length - 1)
                 {
@@ -138,8 +142,6 @@ public class Spinner : MonoBehaviour
             yield return new WaitForSeconds(0.001f * Time.deltaTime * 2);
         }
 
-        //WriteTxt();
-
         // If you set a large number of plays this skips the reward animation
         // and starts recalculating the odds
         if (plays > 1)
@@ -150,17 +152,25 @@ public class Spinner : MonoBehaviour
         else
         {
             claiming = true;
+            WriteTxt();
             StartCoroutine(CollectReward());
         }
     }
 
     // Writes the name of the object to a text file
-    /*private void WriteTxt()
+    private void WriteTxt()
     {
         writer = new StreamWriter(writerPath, true);
-        writer.WriteLine(maxPlays - plays + 1 + " " + winningAward);
+        for (var i = 0; i < prizeStorer.Length; i++)
+        {
+            for (var j = 0; j < prizeStorer[i]; j++)
+            {
+                writer.WriteLine(prizes[i].name);
+            }
+        }
+        //writer.WriteLine(maxPlays - plays + 1 + " " + winningAward);
         writer.Close();
-    }*/
+    }
 
     // Animates reward appearing in center with starburst behind it
     private IEnumerator CollectReward()

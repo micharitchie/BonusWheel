@@ -2261,7 +2261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 399536eb3dc04460f8694f85cd8db035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plays: 1
+  plays: 1000
   button: {fileID: 13617217}
   wheel: {fileID: 836537374}
   starburst: {fileID: 5420533007273945933, guid: 461d3f56799204b588f3d26e23828203,
