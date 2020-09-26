@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{1D47654B-FBDF-425D-CD58-885C2B09C17F}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Spinner.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Spinner.cs" Line="163" Column="8" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="BonusWheel" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Spinner.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="1518a836-45e6-45ea-97a7-20515c450eea" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
